@@ -1,0 +1,208 @@
+---
+import '../styles/global.css';
+
+const github = 'https://github.com/tanmayee043';
+const linkedin = 'https://www.linkedin.com/in/tanmayee-maram/';
+const title = 'Tanmayee Maram | Data and Software Engineer';
+const description = 'I kill my own systems to see what survives. Data pipelines and back ends, with the crash tests to prove them.';
+
+const providers = [
+  { name: 'Gemini 3.5 Flash', correct: '48 of 57', time: '11.6 s' },
+  { name: 'Gemma 4 31B', correct: '45 of 57', time: '102.8 s' },
+  { name: 'GPT-5 mini', correct: '43 of 57', time: '8.6 s' },
+  { name: 'Azure Document Intelligence', correct: '38 of 57', time: '9.0 s' },
+  { name: 'Tesseract + phi3, on my laptop', correct: '3 of 57', time: '24.7 s' },
+];
+
+const lines = [
+  { name: 'Es teh', qty: 2, price: 8000, total: 16000 },
+  { name: 'Nasi goreng', qty: 1, price: 32000, total: 32000 },
+  { name: 'Ayam bakar', qty: 1, price: 45000, total: 45000 },
+];
+
+const experience = [
+  { role: 'M.S. Computer Science', place: 'University of Florida. 3.89 GPA, minor in machine learning.', years: '2025–2027' },
+  { role: 'Graduate Research Assistant (volunteer)', place: 'Trustworthy Engineered Autonomy Lab, University of Florida', years: '2026–now' },
+  { role: 'Technical Consulting Engineer', place: 'Cisco. 9.8/10 customer satisfaction, Fresh Breeze award.', years: '2023–2025' },
+  { role: 'Technical Undergraduate Intern', place: 'Cisco', years: '2023' },
+  { role: 'B.E. Information Technology', place: 'Vasavi College of Engineering, Hyderabad', years: '2019–2023' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tanmayee043.github.io/" />
+    <meta property="og:image" content="https://tanmayee043.github.io/img/og.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="bar">
+      <a class="wordmark" href="#main">Tanmayee Maram</a>
+      <nav aria-label="Main">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <h1>I kill my own systems<br />to see what survives</h1>
+        <p><strong>Data and software engineer</strong> building pipelines and back ends in Python, Kafka, dbt and PostgreSQL. Master's student at the University of Florida, ex-Cisco, graduating May 2027.</p>
+        <div class="actions">
+          <a class="button" href="#work">See the work</a>
+          <a href={github}>GitHub</a>
+          <a href={linkedin}>LinkedIn</a>
+        </div>
+      </section>
+
+      <article id="work" class="reveal">
+        <h2>100 crashes. 0 lost trades.</h2>
+        <p>Version one of my crypto surveillance pipeline lost 2,066 of 3,070 trades in one database restart. So I fixed it, then hard-killed each consumer 100 times to prove it. CI reruns shorter crash tests on every push.</p>
+        <p>It now catches 95% of planted price spikes (up from 72%) while flagging fewer trades, at under 300 ms p95 for 1,000 trades a second.</p>
+
+        <figure class="wide">
+          <div class="fade" id="fade">
+            <img src="/img/crypto-replay-1.webp" alt="Surveillance dashboard early in a replay, with the price chart and a list of flagged trades" width="1800" height="1200" />
+            <img src="/img/crypto-replay-2.webp" alt="The same dashboard later in the replay, with more anomaly markers on the price chart" width="1800" height="1200" loading="lazy" />
+            <img src="/img/crypto-replay-3.webp" alt="The dashboard with one flagged trade open, showing its scores and why it was flagged" width="1800" height="1200" loading="lazy" />
+          </div>
+          <figcaption>Replaying the 10 Oct 2025 crash.</figcaption>
+        </figure>
+
+        <p class="flow">Binance.US → Kafka → Python detector → PostgreSQL → FastAPI → live dashboard</p>
+        <p><a href={`${github}/crypto-streaming-platform`}>Crypto surveillance on GitHub</a></p>
+      </article>
+
+      <article id="lakehouse" class="reveal">
+        <h2>Did the stream miss anything?</h2>
+        <p>A stream can't audit itself. So my lakehouse downloads the exchange's official record and checks the live capture against it, trade by trade.</p>
+        <p>Across 387,758 trades: 0 lost while the stream ran, 0 of 2,945 disagreeing, and 22,423 recovered from the hours it was off.</p>
+
+        <figure class="wide">
+          <img src="/img/lakehouse-reconciliation.webp" alt="Reconciliation dashboard: 100% completeness, 0 trades lost while running, 0 disagreements, 22,423 trades filled from downtime, all three service level objectives met" width="860" height="320" loading="lazy" />
+          <figcaption>Sixteen days of Binance.US trades, reconciled.</figcaption>
+        </figure>
+
+        <p class="flow">Binance.US history + stream → Parquet → dbt on DuckDB → Apache Iceberg → dashboard, run by Dagster</p>
+        <p class="links"><a href={`${github}/lakehouse-pipeline`}>Lakehouse on GitHub</a><a href="https://youtu.be/mXEoZSdkZeU">2-minute video</a><a href="https://tanmayee043.github.io/lakehouse-pipeline/">Data catalog</a></p>
+      </article>
+
+      <article id="receipt-iq" class="reveal">
+        <h2>Who reads a receipt best?</h2>
+        <p>Receipt IQ makes five providers compete, then sends each receipt to the cheapest one it can trust. So far: 69% cheaper than always using the most accurate one. The held-out test is still to come.</p>
+
+        <div class="table-wrap wide" data-ui>
+          <table class="leaderboard">
+            <caption>The same 57 receipts</caption>
+            <thead>
+              <tr><th scope="col">Provider</th><th scope="col" class="num">Fully correct</th><th scope="col" class="num">Median time</th></tr>
+            </thead>
+            <tbody>
+              {providers.map((p) => (
+                <tr><th scope="row">{p.name}</th><td class="num" data-label="Fully correct">{p.correct}</td><td class="num" data-label="Median time">{p.time}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="check">Can you fool its validator?</h3>
+        <p>Change any number.</p>
+
+        <form class="receipt" id="receipt" data-ui autocomplete="off">
+          <table>
+            <caption class="visually-hidden">Editable sample receipt, amounts in rupiah</caption>
+            <thead>
+              <tr><th scope="col">Item</th><th scope="col" class="num">Qty</th><th scope="col" class="num">Price</th><th scope="col" class="num">Line</th></tr>
+            </thead>
+            <tbody>
+              {lines.map((line, i) => (
+                <tr>
+                  <th scope="row">{line.name}</th>
+                  <td class="num">{line.qty}</td>
+                  <td class="num"><input inputmode="numeric" data-money name={`price-${i}`} value={line.price} aria-label={`${line.name} price`} /></td>
+                  <td class="num"><input inputmode="numeric" data-money name={`total-${i}`} value={line.total} aria-label={`${line.name} line total`} /></td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr><th scope="row" colspan="3">Subtotal</th><td class="num"><input inputmode="numeric" data-money name="subtotal" value="93000" aria-label="Subtotal" /></td></tr>
+              <tr><th scope="row" colspan="3">Tax</th><td class="num"><input inputmode="numeric" data-money name="tax" value="9300" aria-label="Tax" /></td></tr>
+              <tr class="grand"><th scope="row" colspan="3">Total</th><td class="num"><input inputmode="numeric" data-money name="total" value="102300" aria-label="Total" /></td></tr>
+            </tfoot>
+          </table>
+
+          <p class="verdict" id="verdict" role="status" data-state="passed"><strong>Passed.</strong> Everything adds up.</p>
+
+          <div class="receipt-actions">
+            <button type="button" id="bug">Show me what fooled it</button>
+            <button type="button" id="reset">Reset</button>
+          </div>
+        </form>
+        <p class="note">Sample receipt, simplified from Receipt IQ's validator.</p>
+
+        <p class="flow">FastAPI → Celery + Redis → model router → validator → PostgreSQL + review queue</p>
+        <p><a href={`${github}/receipt-iq`}>Receipt IQ on GitHub</a></p>
+      </article>
+
+      <article id="privany" class="reveal">
+        <h2>Does this site keep its promises?</h2>
+        <p>Privany reads a site's privacy policy, then watches what the site actually does. A hackathon project, still growing.</p>
+
+        <figure class="wide">
+          <img src="/img/privany-cover.png" alt="Privany cover: a Privacy Facts report comparing what a policy says with what the browser saw, using an illustrative example" width="1500" height="1000" loading="lazy" />
+        </figure>
+
+        <p class="flow">Chrome extension → policy reader → Puppeteer browser test → side-panel report</p>
+        <p><a href={`${github}/Privany`}>Privany on GitHub</a></p>
+      </article>
+
+      <section class="reveal">
+        <p class="statement">How do you know your data is correct?</p>
+        <p>"The tests pass" isn't my answer.</p>
+      </section>
+
+      <section id="experience" class="reveal">
+        <h2>Experience</h2>
+        <ul class="rows">
+          {experience.map((row) => (
+            <li>
+              <strong>{row.role}</strong>
+              <span class="years">{row.years}</span>
+              <span class="place">{row.place}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="contact" class="reveal">
+        <p class="statement">Looking for data and software engineering roles.</p>
+        <p class="links"><a href={linkedin}>LinkedIn</a><a href={github}>GitHub</a></p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Tanmayee Maram</span>
+      <span class="footer-year">2026</span>
+    </footer>
+
+    <script>
+      import '../scripts/receipt.ts';
+      import '../scripts/motion.ts';
+    </script>
+  </body>
+</html>

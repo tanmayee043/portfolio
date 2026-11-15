@@ -1,0 +1,14 @@
+{
+  "name": "tanmayee043.github.io",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "type": "module",
+  "dependencies": {
+    "astro": "^7.4.5"
+  },
+  "private": true
+}
