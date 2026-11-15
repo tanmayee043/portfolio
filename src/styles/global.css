@@ -447,6 +447,11 @@ figure {
   margin: 32px 0;
 }
 
+/* Pictures sit a step narrower than tables and figures. */
+.wide.media {
+  width: min(48vw, 700px);
+}
+
 figcaption {
   margin-top: 8px;
 }
@@ -512,7 +517,7 @@ figure img,
 }
 
 .js .fade img {
-  transition: opacity 1600ms ease-in-out;
+  transition: opacity 1100ms ease-in-out;
 }
 
 .js .fade img.on {
@@ -641,7 +646,8 @@ footer {
     --left: var(--gutter);
   }
 
-  .wide {
+  .wide,
+  .wide.media {
     width: 100%;
     max-width: 100%;
   }

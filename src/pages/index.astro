@@ -90,7 +90,7 @@ const experience = [
         <p>Version one of my crypto surveillance pipeline lost 2,066 of 3,070 trades in one database restart. So I fixed it, then hard-killed each consumer 100 times to prove it. CI reruns shorter crash tests on every push.</p>
         <p>It now catches 95% of planted price spikes (up from 72%) while flagging fewer trades, at under 300 ms p95 for 1,000 trades a second.</p>
 
-        <figure class="wide">
+        <figure class="wide media">
           <div class="fade" id="fade">
             <img src={`${base}/img/crypto-replay-1.webp`} alt="Surveillance dashboard early in a replay, with the price chart and a list of flagged trades" width="1800" height="1200" />
             <img src={`${base}/img/crypto-replay-2.webp`} alt="The same dashboard later in the replay, with more anomaly markers on the price chart" width="1800" height="1200" loading="lazy" />
@@ -126,7 +126,7 @@ const experience = [
         <p class="meta"><strong>Receipt IQ</strong> · FastAPI, Celery, Redis, PostgreSQL</p>
         <p>Receipt IQ makes five providers compete, then sends each receipt to the cheapest one accurate enough. On 95 receipts it was never tuned on, that cost 67% less than always using the most accurate one.</p>
 
-        <figure class="wide">
+        <figure class="wide media">
           <video class="clip" autoplay muted loop playsinline preload="metadata" poster={`${base}/img/receipt-iq-poster.webp`} width="880" height="560" aria-label="Receipt IQ demo: a receipt read and checked, a wrong total refused, the bill split between two people, and the provider leaderboard">
             <source src={`${base}/img/receipt-iq-demo.mp4`} type="video/mp4" />
           </video>
@@ -191,7 +191,7 @@ const experience = [
         <p class="meta"><strong>Privany</strong> · Chrome extension, Puppeteer</p>
         <p>Privany reads a site's privacy policy, then watches what the site actually does. A hackathon project, still growing.</p>
 
-        <figure class="wide">
+        <figure class="wide media">
           <img src={`${base}/img/privany-cover.png`} alt="Privany cover: a Privacy Facts report comparing what a policy says with what the browser saw, using an illustrative example" width="1500" height="1000" loading="lazy" />
         </figure>
 
