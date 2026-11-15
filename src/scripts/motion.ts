@@ -34,7 +34,7 @@ if (frames.length > 1 && !reduced) {
     frames[current].classList.remove('on');
     current = (current + 1) % frames.length;
     frames[current].classList.add('on');
-  }, 6000);
+  }, 4000);
 }
 
 // The demo loop waits for a click under reduced motion, and only plays while on screen.
