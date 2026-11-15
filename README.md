@@ -1,10 +1,10 @@
-# tanmayee043.github.io
+# Portfolio
 
-My portfolio, built with [Astro](https://astro.build) and deployed to GitHub Pages on every push to `main`.
+My portfolio at [tanmayee043.github.io/portfolio](https://tanmayee043.github.io/portfolio/), built with [Astro](https://astro.build) and deployed to GitHub Pages on every push to `main`.
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/portfolio/
 npm run build    # outputs to dist/
 ```
 

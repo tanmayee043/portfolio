@@ -3,6 +3,9 @@ import '../styles/global.css';
 
 const github = 'https://github.com/tanmayee043';
 const linkedin = 'https://www.linkedin.com/in/tanmayee-maram/';
+// The site is served from /portfolio/, so asset paths need the base in front.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = new URL(`${base}/`, Astro.site).href;
 const title = 'Tanmayee Maram | Data and Software Engineer';
 const description = 'I kill my own systems to see what survives. Data pipelines and back ends, with the crash tests to prove them.';
 
@@ -39,9 +42,9 @@ const experience = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tanmayee043.github.io/" />
-    <meta property="og:image" content="https://tanmayee043.github.io/img/og.png" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:url" content={site} />
+    <meta property="og:image" content={`${site}img/og.png`} />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -77,9 +80,9 @@ const experience = [
 
         <figure class="wide">
           <div class="fade" id="fade">
-            <img src="/img/crypto-replay-1.webp" alt="Surveillance dashboard early in a replay, with the price chart and a list of flagged trades" width="1800" height="1200" />
-            <img src="/img/crypto-replay-2.webp" alt="The same dashboard later in the replay, with more anomaly markers on the price chart" width="1800" height="1200" loading="lazy" />
-            <img src="/img/crypto-replay-3.webp" alt="The dashboard with one flagged trade open, showing its scores and why it was flagged" width="1800" height="1200" loading="lazy" />
+            <img src={`${base}/img/crypto-replay-1.webp`} alt="Surveillance dashboard early in a replay, with the price chart and a list of flagged trades" width="1800" height="1200" />
+            <img src={`${base}/img/crypto-replay-2.webp`} alt="The same dashboard later in the replay, with more anomaly markers on the price chart" width="1800" height="1200" loading="lazy" />
+            <img src={`${base}/img/crypto-replay-3.webp`} alt="The dashboard with one flagged trade open, showing its scores and why it was flagged" width="1800" height="1200" loading="lazy" />
           </div>
           <figcaption>Replaying the 10 Oct 2025 crash.</figcaption>
         </figure>
@@ -94,7 +97,7 @@ const experience = [
         <p>Across 387,758 trades: 0 lost while the stream ran, 0 of 2,945 disagreeing, and 22,423 recovered from the hours it was off.</p>
 
         <figure class="wide">
-          <img src="/img/lakehouse-reconciliation.webp" alt="Reconciliation dashboard: 100% completeness, 0 trades lost while running, 0 disagreements, 22,423 trades filled from downtime, all three service level objectives met" width="860" height="320" loading="lazy" />
+          <img src={`${base}/img/lakehouse-reconciliation.webp`} alt="Reconciliation dashboard: 100% completeness, 0 trades lost while running, 0 disagreements, 22,423 trades filled from downtime, all three service level objectives met" width="860" height="320" loading="lazy" />
           <figcaption>Sixteen days of Binance.US trades, reconciled.</figcaption>
         </figure>
 
@@ -164,7 +167,7 @@ const experience = [
         <p>Privany reads a site's privacy policy, then watches what the site actually does. A hackathon project, still growing.</p>
 
         <figure class="wide">
-          <img src="/img/privany-cover.png" alt="Privany cover: a Privacy Facts report comparing what a policy says with what the browser saw, using an illustrative example" width="1500" height="1000" loading="lazy" />
+          <img src={`${base}/img/privany-cover.png`} alt="Privany cover: a Privacy Facts report comparing what a policy says with what the browser saw, using an illustrative example" width="1500" height="1000" loading="lazy" />
         </figure>
 
         <p class="flow">Chrome extension → policy reader → Puppeteer browser test → side-panel report</p>
