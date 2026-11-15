@@ -179,6 +179,53 @@ h3 {
   margin-top: 10vh;
 }
 
+.meta {
+  margin-top: -12px !important;
+  margin-bottom: 24px !important;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.meta strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* A full-width tinted field behind a short closing section */
+main > .band {
+  width: auto;
+  margin-left: 0;
+  padding: 120px var(--gutter) 120px var(--left);
+  background: var(--surface);
+}
+
+.band > :last-child {
+  margin-bottom: 0;
+}
+
+.cv {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  margin: 0;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tools li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 15px;
+}
+
 .flow {
   margin-top: 24px !important;
   color: var(--muted);
@@ -404,8 +451,49 @@ figcaption {
   margin-top: 8px;
 }
 
-figure img {
+figure img,
+.clip {
   background: var(--surface);
+}
+
+.clip {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Reconciliation figures, set in the page's own type */
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin: 0;
+  background: var(--line);
+}
+
+.figures div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 20px;
+  background: var(--surface);
+}
+
+.figures dd {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--up);
+}
+
+.figures dt {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 .fade {
@@ -564,6 +652,15 @@ footer {
     font-size: 28px;
   }
 
+  .figures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cv {
+    grid-template-columns: 1fr;
+    gap: 96px;
+  }
+
   main > * {
     width: min(720px, 100% - 2 * var(--gutter));
   }
@@ -619,6 +716,14 @@ footer {
     width: 100%;
     max-width: 100%;
     font-size: 24px;
+  }
+
+  .figures div {
+    padding: 16px;
+  }
+
+  .figures dd {
+    font-size: 28px;
   }
 
   .leaderboard,

@@ -22,4 +22,6 @@ IBM Plex Sans in two main weights (400, 500), with 600 for emphasis. Sizes: head
 
 ## Motion
 
-Section parts rise once as they enter, the dashboard screenshots crossfade slowly, and controls respond on hover and press. Reduced-motion settings drop the travel and the crossfade, and everything is visible without JavaScript.
+Section parts rise once as they enter, the dashboard screenshots crossfade slowly, the Receipt IQ demo plays as a muted loop only while on screen, and controls respond on hover and press. Reduced-motion settings drop the travel and the crossfade and leave the loop paused with controls, and everything is visible without JavaScript.
+
+Results are set in the page's own type rather than shown as screenshots of other dashboards (the Lakehouse figures row). Short closing sections sit on a full-width surface band so they read as a deliberate pause, not empty ground.
