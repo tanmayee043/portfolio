@@ -3,6 +3,7 @@ import '../styles/global.css';
 
 const github = 'https://github.com/tanmayee043';
 const linkedin = 'https://www.linkedin.com/in/tanmayee-maram/';
+const email = 'maramtanmayee@gmail.com';
 // The site is served from /portfolio/, so asset paths need the base in front.
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = new URL(`${base}/`, Astro.site).href;
@@ -10,12 +11,21 @@ const title = 'Tanmayee Maram | Data and Software Engineer';
 const description = 'I kill my own systems to see what survives. Data pipelines and back ends, with the crash tests to prove them.';
 
 const providers = [
-  { name: 'Gemini 3.5 Flash', correct: '48 of 57', time: '11.6 s' },
-  { name: 'Gemma 4 31B', correct: '45 of 57', time: '102.8 s' },
-  { name: 'GPT-5 mini', correct: '43 of 57', time: '8.6 s' },
-  { name: 'Azure Document Intelligence', correct: '38 of 57', time: '9.0 s' },
-  { name: 'Tesseract + phi3, on my laptop', correct: '3 of 57', time: '24.7 s' },
+  { name: 'Gemini 3.5 Flash', correct: '85.3%', time: '9.3 s' },
+  { name: 'Gemma 4 31B', correct: '80.0%', time: '70.6 s' },
+  { name: 'GPT-5 mini', correct: '74.7%', time: '9.9 s' },
+  { name: 'Azure Document Intelligence', correct: '57.9%', time: '9.0 s' },
+  { name: 'Tesseract + phi3, on my laptop', correct: '4.2%', time: '21.8 s' },
 ];
+
+const reconciliation = [
+  { value: '100%', label: 'complete while the stream ran' },
+  { value: '0', label: 'trades lost' },
+  { value: '0 of 2,945', label: 'captured trades disagreeing' },
+  { value: '22,423', label: 'recovered from downtime' },
+];
+
+const tools = ['Python', 'SQL', 'Kafka', 'dbt', 'Dagster', 'DuckDB', 'Apache Iceberg', 'PostgreSQL', 'FastAPI', 'Celery', 'Redis', 'Docker', 'GitHub Actions'];
 
 const lines = [
   { name: 'Es teh', qty: 2, price: 8000, total: 16000 },
@@ -70,11 +80,13 @@ const experience = [
           <a class="button" href="#work">See the work</a>
           <a href={github}>GitHub</a>
           <a href={linkedin}>LinkedIn</a>
+          <a href={`mailto:${email}`}>Email</a>
         </div>
       </section>
 
       <article id="work" class="reveal">
         <h2>100 crashes. 0 lost trades.</h2>
+        <p class="meta"><strong>Crypto surveillance</strong> · Kafka, Python, PostgreSQL, FastAPI</p>
         <p>Version one of my crypto surveillance pipeline lost 2,066 of 3,070 trades in one database restart. So I fixed it, then hard-killed each consumer 100 times to prove it. CI reruns shorter crash tests on every push.</p>
         <p>It now catches 95% of planted price spikes (up from 72%) while flagging fewer trades, at under 300 ms p95 for 1,000 trades a second.</p>
 
@@ -93,12 +105,16 @@ const experience = [
 
       <article id="lakehouse" class="reveal">
         <h2>Did the stream miss anything?</h2>
+        <p class="meta"><strong>Lakehouse pipeline</strong> · dbt, DuckDB, Dagster, Apache Iceberg</p>
         <p>A stream can't audit itself. So my lakehouse downloads the exchange's official record and checks the live capture against it, trade by trade.</p>
-        <p>Across 387,758 trades: 0 lost while the stream ran, 0 of 2,945 disagreeing, and 22,423 recovered from the hours it was off.</p>
 
         <figure class="wide">
-          <img src={`${base}/img/lakehouse-reconciliation.webp`} alt="Reconciliation dashboard: 100% completeness, 0 trades lost while running, 0 disagreements, 22,423 trades filled from downtime, all three service level objectives met" width="860" height="320" loading="lazy" />
-          <figcaption>Sixteen days of Binance.US trades, reconciled.</figcaption>
+          <dl class="figures">
+            {reconciliation.map((f) => (
+              <div><dt>{f.label}</dt><dd>{f.value}</dd></div>
+            ))}
+          </dl>
+          <figcaption>387,758 official Binance.US trades over 16 days, reconciled.</figcaption>
         </figure>
 
         <p class="flow">Binance.US history + stream → Parquet → dbt on DuckDB → Apache Iceberg → dashboard, run by Dagster</p>
@@ -107,11 +123,19 @@ const experience = [
 
       <article id="receipt-iq" class="reveal">
         <h2>Who reads a receipt best?</h2>
-        <p>Receipt IQ makes five providers compete, then sends each receipt to the cheapest one it can trust. So far: 69% cheaper than always using the most accurate one. The held-out test is still to come.</p>
+        <p class="meta"><strong>Receipt IQ</strong> · FastAPI, Celery, Redis, PostgreSQL</p>
+        <p>Receipt IQ makes five providers compete, then sends each receipt to the cheapest one accurate enough. On 95 receipts it was never tuned on, that cost 67% less than always using the most accurate one.</p>
+
+        <figure class="wide">
+          <video class="clip" autoplay muted loop playsinline preload="metadata" poster={`${base}/img/receipt-iq-poster.webp`} width="880" height="560" aria-label="Receipt IQ demo: a receipt read and checked, a wrong total refused, the bill split between two people, and the provider leaderboard">
+            <source src={`${base}/img/receipt-iq-demo.mp4`} type="video/mp4" />
+          </video>
+          <figcaption>The live demo: read, check, split, compare.</figcaption>
+        </figure>
 
         <div class="table-wrap wide" data-ui>
           <table class="leaderboard">
-            <caption>The same 57 receipts</caption>
+            <caption>95 receipts the tuning never saw</caption>
             <thead>
               <tr><th scope="col">Provider</th><th scope="col" class="num">Fully correct</th><th scope="col" class="num">Median time</th></tr>
             </thead>
@@ -159,11 +183,12 @@ const experience = [
         <p class="note">Sample receipt, simplified from Receipt IQ's validator.</p>
 
         <p class="flow">FastAPI → Celery + Redis → model router → validator → PostgreSQL + review queue</p>
-        <p><a href={`${github}/receipt-iq`}>Receipt IQ on GitHub</a></p>
+        <p class="links"><a href="https://receipt-iq-m7bq.onrender.com">Try the live demo</a><a href={`${github}/receipt-iq`}>Receipt IQ on GitHub</a></p>
       </article>
 
       <article id="privany" class="reveal">
         <h2>Does this site keep its promises?</h2>
+        <p class="meta"><strong>Privany</strong> · Chrome extension, Puppeteer</p>
         <p>Privany reads a site's privacy policy, then watches what the site actually does. A hackathon project, still growing.</p>
 
         <figure class="wide">
@@ -174,12 +199,14 @@ const experience = [
         <p><a href={`${github}/Privany`}>Privany on GitHub</a></p>
       </article>
 
-      <section class="reveal">
+      <section class="band reveal">
         <p class="statement">How do you know your data is correct?</p>
         <p>"The tests pass" isn't my answer.</p>
       </section>
 
       <section id="experience" class="reveal">
+        <div class="cv wide">
+        <div>
         <h2>Experience</h2>
         <ul class="rows">
           {experience.map((row) => (
@@ -190,11 +217,19 @@ const experience = [
             </li>
           ))}
         </ul>
+        </div>
+        <div>
+          <h2>Tools</h2>
+          <ul class="tools">
+            {tools.map((tool) => <li>{tool}</li>)}
+          </ul>
+        </div>
+        </div>
       </section>
 
-      <section id="contact" class="reveal">
+      <section id="contact" class="band reveal">
         <p class="statement">Looking for data and software engineering roles.</p>
-        <p class="links"><a href={linkedin}>LinkedIn</a><a href={github}>GitHub</a></p>
+        <p class="links"><a href={`mailto:${email}`}>{email}</a><a href={linkedin}>LinkedIn</a><a href={github}>GitHub</a></p>
       </section>
     </main>
 

@@ -36,3 +36,18 @@ if (frames.length > 1 && !reduced) {
     frames[current].classList.add('on');
   }, 6000);
 }
+
+// The demo loop waits for a click under reduced motion, and only plays while on screen.
+document.querySelectorAll<HTMLVideoElement>('video.clip').forEach((video) => {
+  if (reduced) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.controls = true;
+    return;
+  }
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) video.play().catch(() => {});
+    else video.pause();
+  }).observe(video);
+});
